@@ -14,9 +14,10 @@ public class Projectile : MonoBehaviour
 
     public void Fire(Vector3 fireAtLocation)
     {
-        fireAtLocation.z = 0;
+        fireAtLocation.z = -1;
         Debug.DrawRay(transform.position, fireAtLocation - transform.position, Color.red, 1f);
-        transform.forward = fireAtLocation - transform.position;
-        rb.AddForce(transform.forward * force, ForceMode2D.Impulse);
+        transform.up = fireAtLocation - transform.position;
+        Debug.DrawRay(transform.position, transform.up, Color.green, 1f);
+        rb.AddForce(transform.up * force, ForceMode2D.Impulse);
     }
 }
