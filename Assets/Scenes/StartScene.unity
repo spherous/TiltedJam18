@@ -368,11 +368,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1968634259}
   bounds:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 85
-    height: 60
+    x: 85
+    y: 60
+  speed: 2
 --- !u!1 &425467365
 GameObject:
   m_ObjectHideFlags: 0
@@ -695,6 +693,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1478877157085405093, guid: 4adf11dd58ca41c4987004e7454ed398,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3044285105558051619, guid: 4adf11dd58ca41c4987004e7454ed398,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7761237643424840640, guid: 4adf11dd58ca41c4987004e7454ed398,
         type: 3}
       propertyPath: m_Sprite
@@ -714,7 +722,7 @@ PrefabInstance:
     - target: {fileID: 7761237643424840641, guid: 4adf11dd58ca41c4987004e7454ed398,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 7761237643424840641, guid: 4adf11dd58ca41c4987004e7454ed398,
         type: 3}
