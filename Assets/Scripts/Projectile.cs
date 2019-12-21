@@ -21,7 +21,7 @@ public class Projectile : MonoBehaviour, IPooledObject<Projectile>
         fireAtLocation.z = 0;
         Debug.DrawRay(transform.position, fireAtLocation - transform.position, Color.red, 1f);
         transform.up = fireAtLocation - transform.position;
-        rb.AddForce(transform.forward * force, ForceMode2D.Impulse);
+        rb.AddForce(transform.up * force, ForceMode2D.Impulse);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
