@@ -368,8 +368,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1968634259}
   bounds:
-    x: 85
-    y: 60
+    x: 20.59
+    y: 16.2
   speed: 2
 --- !u!1 &425467365
 GameObject:
