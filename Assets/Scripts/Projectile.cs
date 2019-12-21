@@ -1,11 +1,15 @@
-﻿using Unity.Mathematics;
+﻿using System;
+using Unity.Mathematics;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Projectile : MonoBehaviour
+public class Projectile : MonoBehaviour, IPooledObject<Projectile>
 {
     public Rigidbody2D rb;
     public float force;
+
+    public Action<Projectile> ReturnToPool { get; set; }
+
     private void Awake()
     {
         if(rb == null)
@@ -16,7 +20,13 @@ public class Projectile : MonoBehaviour
     {
         fireAtLocation.z = 0;
         Debug.DrawRay(transform.position, fireAtLocation - transform.position, Color.red, 1f);
-        transform.forward = fireAtLocation - transform.position;
+        transform.LookAt(fireAtLocation);
         rb.AddForce(transform.forward * force, ForceMode2D.Impulse);
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        ReturnToPool(this);
+    }
+
 }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2471664861137062050}
   - component: {fileID: 3044285105558051619}
   - component: {fileID: 1478877157085405093}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Santa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1500
-  projectile: {fileID: 4796656094510063035, guid: c7a3ad089c01b6a4a9466464dd059381,
+  projectile: {fileID: 3148499513222065606, guid: c7a3ad089c01b6a4a9466464dd059381,
     type: 3}
   attackDelay: 1
 --- !u!50 &3044285105558051619
@@ -120,7 +120,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &1478877157085405093
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -136,4 +136,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.1
+  m_Radius: 0.25

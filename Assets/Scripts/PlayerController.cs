@@ -13,14 +13,19 @@ public class PlayerController : MonoBehaviour
     private float speed;
 
     [SerializeField]
-    private GameObject projectile;
+    private Projectile projectile;
 
     [SerializeField]
     private float attackDelay;
     private float lastAttackTime = 0;
+    
 
+    PoolManager<Projectile> m_pool;
+    
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();
+
+        m_pool = new PoolManager<Projectile>(projectile, 10);
     }
 
     private void Update()
@@ -36,9 +41,9 @@ public class PlayerController : MonoBehaviour
         {
             lastAttackTime = Time.time;
 
-            GameObject newGO = Instantiate(projectile);
-            newGO.transform.position = transform.position;
-            newGO.GetComponent<Projectile>().Fire(gm.activeCamera.ScreenToWorldPoint(Input.mousePosition));
+            Projectile projectile = m_pool.Get();
+            projectile.transform.position = transform.position;
+            projectile.Fire(gm.activeCamera.ScreenToWorldPoint(Input.mousePosition));
         }
     }
 
