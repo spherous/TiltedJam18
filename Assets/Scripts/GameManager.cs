@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
 
     public void OnElfDied(Vector3 position)
     {
+        score--;
         Enemy enemy = m_enemySpawnManager.Spawn(position);
         enemy.ResetLife();
     }
