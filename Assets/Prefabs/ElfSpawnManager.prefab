@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_initialAmount: 10
-  m_spawnTime: 6
+  m_spawnTime: 7
   m_locations:
   - {fileID: 6507751423747732433}
   - {fileID: 6874408587706565740}

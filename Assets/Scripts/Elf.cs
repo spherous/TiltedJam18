@@ -51,17 +51,21 @@ public class Elf : Damagable, IPooledObject<Elf>
 
     void FixedUpdate()
     {
-        //if (ms_santa)
-        //{
-        //    m_rigidbody2D.AddForce((ms_santa.transform.position - transform.position) * (m_speed * Time.fixedDeltaTime), ForceMode2D.Force);
-        //}
+        m_rigidbody2D.AddForce(Vector3.down * (m_speed * Time.fixedDeltaTime), ForceMode2D.Force);
     }
 
     #endregion
 
     #region Physics
 
-
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Enemy enemy = collision.GetComponent<Enemy>();
+        if(enemy)
+        {
+            Death();
+        }
+    }
 
     #endregion
 

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4468835717024485176}
   - component: {fileID: 2614374981246089688}
   - component: {fileID: 1455746633262898703}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Elf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -134,5 +134,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 0
-  m_speed: 1
+  m_speed: 100
   m_clearanceRange: 20
