@@ -25,6 +25,15 @@ public class Enemy : Damagable, IPooledObject<Enemy>
     private int damageToDeal;
 
     private HealthBar bar = default;
+
+    [SerializeField]
+    AudioClip[] m_hitSounds = null;
+
+    [SerializeField]
+    AudioClip[] m_diedSounds = null;
+
+    AudioSource m_audioSource = null;
+
     #endregion
 
     #region Callbacks
@@ -46,6 +55,8 @@ public class Enemy : Damagable, IPooledObject<Enemy>
             ms_santa = FindObjectOfType<Santa>();
 
         m_rigidbody2D = GetComponent<Rigidbody2D>();
+
+        m_audioSource = GetComponent<AudioSource>();
 
         base.Awake();
     }
@@ -79,6 +90,17 @@ public class Enemy : Damagable, IPooledObject<Enemy>
         if (bar) bar.gameObject.SetActive(false);
         Invoke("Repool", 10f);
         GameManager.Instance.AddToScore(2);
+
+        m_audioSource.clip = m_diedSounds[UnityEngine.Random.Range(0, m_diedSounds.Length)];
+        m_audioSource.Play();
+    }
+
+    public override int TakeDamage(int damageToTake)
+    {
+        m_audioSource.clip = m_hitSounds[UnityEngine.Random.Range(0, m_hitSounds.Length)];
+        m_audioSource.Play();
+
+        return base.TakeDamage(damageToTake);
     }
 
     private void Repool()
