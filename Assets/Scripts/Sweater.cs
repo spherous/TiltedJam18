@@ -11,7 +11,9 @@ public class Sweater : MonoBehaviour, IPooledObject<Sweater>
     private void OnTriggerEnter2D(Collider2D other) {
         Santa santa = other.GetComponent<Santa>();
         if(santa != null)
+        {
             santa.Heal(amountToHeal);
-        ReturnToPool(this);
+            ReturnToPool(this);
+        }
     }
 }

@@ -66,6 +66,7 @@ public class Enemy : Damagable, IPooledObject<Enemy>
     {
         // perform death
         ReturnToPool(this);
+        GameManager.Instance.score++;
     }
     public override void ResetLife()
     {

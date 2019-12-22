@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance;
 
+    public int score = 0;
+
     private void Awake()
     {
         Instance = this;
@@ -35,7 +37,8 @@ public class GameManager : MonoBehaviour
 
     public void OnElfDied(Vector3 position)
     {
-        m_enemySpawnManager.Spawn(position);
+        Enemy enemy = m_enemySpawnManager.Spawn(position);
+        enemy.ResetLife();
     }
 
 }
