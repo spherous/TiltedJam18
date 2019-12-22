@@ -20,6 +20,8 @@ public class PoolManager<T> where T : MonoBehaviour, IPooledObject<T>
     #region Variables
 
     Queue<T> m_pool = new Queue<T>();
+    List<T> m_allItems = new List<T>();
+
 
     T m_prefab = null;
     Transform m_parent = null;
@@ -28,7 +30,8 @@ public class PoolManager<T> where T : MonoBehaviour, IPooledObject<T>
 
     #region Properties
 
-
+    public List<T> AllItems {  get { return m_allItems; } }
+ 
     #endregion
 
     #region Construction
@@ -60,6 +63,7 @@ public class PoolManager<T> where T : MonoBehaviour, IPooledObject<T>
         T obj = GameObject.Instantiate<T>(m_prefab, m_parent);
         obj.ReturnToPool += Return;
         obj.gameObject.SetActive(active);
+        m_allItems.Add(obj);
         return obj;
     }
     
