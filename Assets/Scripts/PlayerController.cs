@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
 
             Projectile projectile = m_pool.Get();
             projectile.transform.position = transform.position;
-            projectile.Fire(gm.activeCamera.ScreenToWorldPoint(Input.mousePosition));
+            projectile.Fire(gm.activeCamera.ScreenToWorldPoint(Input.mousePosition), 1);
         }
     }
 
