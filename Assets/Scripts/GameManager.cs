@@ -11,7 +11,6 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     string m_startScreen = null;
 
-
     EnemySpawnManager m_enemySpawnManager = null;
 
     public Camera activeCamera;
@@ -45,9 +44,14 @@ public class GameManager : MonoBehaviour
 
     public void OnElfDied(Vector3 position)
     {
-        m_score--;
-        UpdateScore();
-        Enemy enemy = m_enemySpawnManager.Spawn(position);
+        score--;
+        StartCoroutine(ConvertElf(position));
+    }
+
+    IEnumerator ConvertElf(Vector3 pos)
+    {
+        yield return new WaitForSeconds(Elf.conversion_time);
+        Enemy enemy = m_enemySpawnManager.Spawn(pos);
         enemy.ResetLife();
     }
 

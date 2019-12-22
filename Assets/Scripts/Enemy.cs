@@ -23,6 +23,8 @@ public class Enemy : Damagable, IPooledObject<Enemy>
 
     [SerializeField]
     private int damageToDeal;
+
+    private HealthBar bar = default;
     #endregion
 
     #region Callbacks
@@ -66,9 +68,28 @@ public class Enemy : Damagable, IPooledObject<Enemy>
     {
         base.Death();
         // perform death
-        ReturnToPool(this);
+        //ReturnToPool(this);
+        //Collider2D cd = GetComponent<Collider2D>();
+        //if (cd) cd.enabled = false;
+        enabled = false;
+
+        bar = GetComponentInChildren<HealthBar>();
+        if (bar) bar.gameObject.SetActive(false);
+        Invoke("Repool", 10f);
         GameManager.Instance.AddToScore(2);
     }
+
+    private void Repool()
+    {
+        Collider2D cd = GetComponent<Collider2D>();
+        if (cd) cd.enabled = true;
+        enabled = true;
+        if (bar) bar.gameObject.SetActive(true);
+        WalkingAnimator wa = GetComponentInChildren<WalkingAnimator>();
+        if (wa) wa.enabled = true;
+        ReturnToPool(this);
+    }
+
     public override void ResetLife()
     {
         base.ResetLife();

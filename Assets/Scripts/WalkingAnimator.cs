@@ -7,7 +7,8 @@ public class WalkingAnimator : MonoBehaviour
 {
     public float stoppingMag = 1f;
 
-
+    [SerializeField]
+    public Sprite dead = default;
     [SerializeField]
     public Sprite idle = default;
     [SerializeField]
@@ -27,6 +28,7 @@ public class WalkingAnimator : MonoBehaviour
     private Dir dir = Dir.Idle;
     private int spriteIndex = 0;
     private float elapsed = 0;
+    private Damagable dam;
     
     private enum Dir
     {
@@ -41,6 +43,9 @@ public class WalkingAnimator : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+        dam = GetComponentInChildren<Damagable>();
+
+        if (dam) dam.OnHealthChanged += DeathCheck;
     }
 
     private void Update()
@@ -109,4 +114,12 @@ public class WalkingAnimator : MonoBehaviour
         }
     }
 
+    public void DeathCheck (int newHealth)
+    {
+        if (newHealth <= 0)
+        {
+            enabled = false;
+            sr.sprite = dead;
+        }
+    }
 }

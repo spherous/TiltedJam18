@@ -234,6 +234,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stoppingMag: 0.1
+  dead: {fileID: 21300000, guid: d91650c5f0973bf488acbc6334b9280d, type: 3}
   idle: {fileID: -4357612709839478877, guid: 637214abf97fbf24ab5fe5ae8e09024d, type: 3}
   ups:
   - {fileID: 3804828520499009285, guid: 637214abf97fbf24ab5fe5ae8e09024d, type: 3}

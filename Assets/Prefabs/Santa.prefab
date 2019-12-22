@@ -202,11 +202,8 @@ MonoBehaviour:
   attackDelay: 1
   maxPowerUpDuration: 5
   powerUpTime: 2
-  m_projectileShakeMagnitude: 5
+  m_projectileShakeMagnitude: 0.5
   m_projectileShakeDuration: 0.5
-  m_throwSounds:
-  - {fileID: 8300000, guid: bb6effb608d95884792d5ac548cd1e94, type: 3}
-  - {fileID: 8300000, guid: 804b85c3820af6041a895932458b2529, type: 3}
 --- !u!50 &3044285105558051619
 Rigidbody2D:
   serializedVersion: 4
@@ -257,6 +254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stoppingMag: 1
+  dead: {fileID: 21300000, guid: b42ff0fd806d98d4da6c43c990872134, type: 3}
   idle: {fileID: -3422914993694880539, guid: 549496606705a624888085f9b198d7c3, type: 3}
   ups:
   - {fileID: -8500444094995323067, guid: 549496606705a624888085f9b198d7c3, type: 3}

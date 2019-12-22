@@ -10,6 +10,7 @@ public class Santa : Damagable
     } 
     protected override void Death()
     {
+        enabled = false;
         base.Death();
     }
     public override void Heal(int amountToHeal)

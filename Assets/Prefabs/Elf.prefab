@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3d0dde280917af489e64a73835f9258, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 0
+  maxHealth: 1
   m_speed: 100
   m_clearanceRange: 20
 --- !u!114 &1261133756729857315
@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stoppingMag: 0.1
+  dead: {fileID: 21300000, guid: b2a418631d1669847a1ba36046013af7, type: 3}
   idle: {fileID: -7843495155467931894, guid: 407c677524a727841a7c32fb853043fa, type: 3}
   ups:
   - {fileID: 1069880670876508427, guid: 407c677524a727841a7c32fb853043fa, type: 3}
