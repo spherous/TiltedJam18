@@ -25,6 +25,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float powerUpTime;
 
+
+    [SerializeField]
+    private float m_projectileShakeMagnitude = .5f;
+
+    [SerializeField]
+    private float m_projectileShakeDuration = .5f;
+
+
     PoolManager<Projectile> m_pool;
     
     private void Awake() {
@@ -59,6 +67,8 @@ public class PlayerController : MonoBehaviour
             Projectile projectile = m_pool.Get();
             projectile.transform.position = transform.position;
             projectile.Fire(gm.activeCamera.ScreenToWorldPoint(Input.mousePosition), 1);
+
+            ScreenShake.Shake(m_projectileShakeMagnitude, m_projectileShakeDuration);
         }
     }
 
