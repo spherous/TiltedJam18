@@ -21,6 +21,8 @@ public class Enemy : Damagable, IPooledObject<Enemy>
 
     Rigidbody2D m_rigidbody2D = null;
 
+    [SerializeField]
+    private int damageToDeal;
     #endregion
 
     #region Callbacks
@@ -71,4 +73,9 @@ public class Enemy : Damagable, IPooledObject<Enemy>
     }
     #endregion
 
+    private void OnCollisionEnter2D(Collision2D other) {
+        Santa santa = other.gameObject.GetComponent<Santa>();
+        if(santa != null)
+            santa.TakeDamage(damageToDeal);
+    }
 }

@@ -2,9 +2,16 @@
 
 public class Damagable : MonoBehaviour
 {
+
+    public delegate void HealthChanged(int newHealth);
+    public HealthChanged OnHealthChanged;
     [SerializeField]
     public int maxHealth;
     public int currentHealth { get; private set; } = 0;
+
+    private void Awake() {
+        ResetLife();
+    }
 
     public virtual int TakeDamage(int damageToTake)
     {
@@ -13,6 +20,9 @@ public class Damagable : MonoBehaviour
         if(currentHealth == 0)
             Death();
 
+
+        OnHealthChanged?.Invoke(currentHealth);
+        
         return currentHealth;
     }
 
@@ -24,10 +34,12 @@ public class Damagable : MonoBehaviour
     public virtual void ResetLife()
     {
         currentHealth = maxHealth;
+        OnHealthChanged?.Invoke(currentHealth);
     }
 
     public virtual void Heal(int amountToHeal)
     {
-        currentHealth = Mathf.Min(currentHealth + amountToHeal, maxHealth);
+        currentHealth = Mathf.Min(currentHealth + Mathf.Abs(amountToHeal), maxHealth);
+        OnHealthChanged?.Invoke(currentHealth);
     }
 }
