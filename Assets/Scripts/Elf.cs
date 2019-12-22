@@ -60,12 +60,9 @@ public class Elf : Damagable, IPooledObject<Elf>
     void FixedUpdate()
     {
         m_rigidbody2D.AddForce(Vector3.down * (m_speed * Time.fixedDeltaTime), ForceMode2D.Force);
-
-
+        
         if((Mathf.Abs(this.transform.position.y) - m_originalStartingY) > m_clearanceRange)
         {
-            Debug.Log("Survived");
-
             Survived?.Invoke();
             ReturnToPool(this);
         }
