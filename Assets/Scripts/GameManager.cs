@@ -11,15 +11,20 @@ public class GameManager : MonoBehaviour
     string m_startScreen = null;
 
 
+    EnemySpawnManager m_enemySpawnManager = null;
+
     public Camera activeCamera;
 
     public static GameManager Instance;
 
-    private void Awake() {
+    private void Awake()
+    {
         Instance = this;
+
+        m_enemySpawnManager = FindObjectOfType<EnemySpawnManager>();
+        Elf.Died += OnElfDied;
     }
-
-
+    
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -28,5 +33,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void OnElfDied(Vector3 position)
+    {
+        m_enemySpawnManager.Spawn(position);
+    }
 
 }

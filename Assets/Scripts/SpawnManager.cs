@@ -1,9 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class SpawnManager : MonoBehaviour
+public abstract class SpawnManager<T>  : MonoBehaviour where T : MonoBehaviour, IPooledObject<T>
 {
     #region Constants
 
@@ -13,21 +13,19 @@ public class SpawnManager : MonoBehaviour
     #region Variables
 
     [SerializeField]
+    int m_initialAmount = 10;
+
+    [SerializeField]
     float m_spawnTime = 2f;
 
     [SerializeField]
     Transform[] m_locations = null;
 
     [SerializeField]
-    private Enemy m_enemy = null;
-    [SerializeField]
-    private Preasent m_preasent = null;
-    [SerializeField]
-    private Sweater m_sweater = null;
+    private T m_pooledItem = null;
+    
+    PoolManager<T> m_pool;
 
-    PoolManager<Enemy> m_pool;
-    PoolManager<Preasent> m_preasentPool;
-    PoolManager<Sweater> m_sweaterPool;
 
     float? m_timer = null;
     
@@ -42,9 +40,7 @@ public class SpawnManager : MonoBehaviour
 
     void Awake()
     {
-        m_pool = new PoolManager<Enemy>(m_enemy, 10);
-        m_preasentPool = new PoolManager<Preasent>(m_preasent, 10);
-        m_sweaterPool = new PoolManager<Sweater>(m_sweater, 10);
+        m_pool = new PoolManager<T>(m_pooledItem, m_initialAmount);
     }
 
     #endregion
@@ -58,7 +54,7 @@ public class SpawnManager : MonoBehaviour
 
         m_timer -= Time.deltaTime;
 
-        if(m_timer < 0f)
+        if (m_timer < 0f)
         {
             Spawn();
             m_timer = m_spawnTime;
@@ -69,32 +65,21 @@ public class SpawnManager : MonoBehaviour
 
     #region Management
 
-    void Spawn()
+    public virtual T Spawn()
     {
-        float rand = Random.Range(0f, 1f);
-
-        if(rand <= 0.7f)
-        {
-            Enemy enemy = m_pool.Get();
-            enemy.ResetLife();
-            Transform spawn = m_locations[UnityEngine.Random.Range(0, m_locations.Length)];
-            enemy.transform.SetPositionAndRotation(spawn.position, spawn.rotation);
-        }
-        else if(rand > 0.7f && rand < 0.85)
-        {
-            Preasent preasent = m_preasentPool.Get();
-            Transform spawn = m_locations[UnityEngine.Random.Range(0, m_locations.Length)];
-            preasent.transform.SetPositionAndRotation(spawn.position, spawn.rotation);
-        }
-        else
-        {
-            Sweater sweater = m_sweaterPool.Get();
-            Transform spawn = m_locations[UnityEngine.Random.Range(0, m_locations.Length)];
-            sweater.transform.SetPositionAndRotation(spawn.position, spawn.rotation);
-        }
-
+        T pooledItem = m_pool.Get();
+        Transform spawn = m_locations[UnityEngine.Random.Range(0, m_locations.Length)];
+        pooledItem.transform.SetPositionAndRotation(spawn.position, spawn.rotation);
+        return pooledItem;
     }
-    
+
+    public virtual T Spawn(Vector3 position)
+    {
+        T pooledItem = m_pool.Get();
+        pooledItem.transform.SetPositionAndRotation(position, Quaternion.identity);
+        return pooledItem;
+    }
+
     #endregion
 
 }
