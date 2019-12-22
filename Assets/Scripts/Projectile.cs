@@ -58,8 +58,8 @@ public class Projectile : MonoBehaviour, IPooledObject<Projectile>
             {
                 if(hit is Elf)
                     continue;
-                
-                hit.TakeDamage(damage);
+                if(hit.currentHealth > 0)
+                    hit.TakeDamage(damage);
             }
         }
         // Damagable hit = collision.gameObject.GetComponent<Damagable>();
