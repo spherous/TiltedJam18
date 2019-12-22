@@ -189,3 +189,5 @@ MonoBehaviour:
   - {fileID: 1149675840}
   m_enemy: {fileID: -7289738114632642682, guid: b681b51c1505b434fbc44b45e3771b8d,
     type: 3}
+  m_preasent: {fileID: 157200953080272229, guid: f2f14c41f31043049a60e3f42fd7460c,
+    type: 3}

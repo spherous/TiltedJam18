@@ -19,6 +19,11 @@ public class PlayerController : MonoBehaviour
     private float attackDelay;
     private float lastAttackTime = 0;
     
+    private float powerUpDuration = 0;
+    [SerializeField]
+    private float maxPowerUpDuration;
+    [SerializeField]
+    private float powerUpTime;
 
     PoolManager<Projectile> m_pool;
     
@@ -33,11 +38,21 @@ public class PlayerController : MonoBehaviour
         Movement();
         if(Input.GetButton("Fire1"))
             Fire();
+
+        if(powerUpDuration >= 0)
+        {
+            powerUpDuration -= Time.deltaTime;
+        }
     }
 
     private void Fire()
     {
-        if(Time.time - lastAttackTime >= attackDelay)
+        float modifiedAttackDelay = attackDelay;
+
+        if(powerUpDuration > 0 )
+            modifiedAttackDelay = attackDelay * 0.1f;
+
+        if(Time.time - lastAttackTime >= modifiedAttackDelay)
         {
             lastAttackTime = Time.time;
 
@@ -53,5 +68,10 @@ public class PlayerController : MonoBehaviour
         float y = Input.GetAxis("Vertical");
 
         rb.AddForce(new float2(x, y) * speed * Time.deltaTime);
+    }
+
+    public void PowerUp()
+    {
+        powerUpDuration = Mathf.Clamp(powerUpDuration + powerUpTime, 0, maxPowerUpDuration);
     }
 }

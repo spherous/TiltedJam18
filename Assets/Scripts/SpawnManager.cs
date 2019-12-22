@@ -20,8 +20,11 @@ public class SpawnManager : MonoBehaviour
 
     [SerializeField]
     private Enemy m_enemy = null;
+    [SerializeField]
+    private Preasent m_preasent = null;
 
     PoolManager<Enemy> m_pool;
+    PoolManager<Preasent> m_preasentPool;
 
     float? m_timer = null;
     
@@ -37,6 +40,7 @@ public class SpawnManager : MonoBehaviour
     void Awake()
     {
         m_pool = new PoolManager<Enemy>(m_enemy, 10);
+        m_preasentPool = new PoolManager<Preasent>(m_preasent, 10);
     }
 
     #endregion
@@ -63,9 +67,21 @@ public class SpawnManager : MonoBehaviour
 
     void Spawn()
     {
-        Enemy enemy = m_pool.Get();
-        Transform spawn = m_locations[UnityEngine.Random.Range(0, m_locations.Length)];
-        enemy.transform.SetPositionAndRotation(spawn.position, spawn.rotation);
+        float rand = Random.Range(0f, 1f);
+
+        if(rand <= 0.7f)
+        {
+            Enemy enemy = m_pool.Get();
+            Transform spawn = m_locations[UnityEngine.Random.Range(0, m_locations.Length)];
+            enemy.transform.SetPositionAndRotation(spawn.position, spawn.rotation);
+        }
+        else
+        {
+            Preasent preasent = m_preasentPool.Get();
+            Transform spawn = m_locations[UnityEngine.Random.Range(0, m_locations.Length)];
+            preasent.transform.SetPositionAndRotation(spawn.position, spawn.rotation);
+        }
+
     }
     
     #endregion
