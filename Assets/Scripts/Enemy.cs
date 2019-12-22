@@ -72,7 +72,7 @@ public class Enemy : Damagable, IPooledObject<Enemy>
         //Collider2D cd = GetComponent<Collider2D>();
         //if (cd) cd.enabled = false;
         enabled = false;
-
+        
         bar = GetComponentInChildren<HealthBar>();
         if (bar) bar.gameObject.SetActive(false);
         Invoke("Repool", 10f);
@@ -99,6 +99,9 @@ public class Enemy : Damagable, IPooledObject<Enemy>
     private void OnCollisionEnter2D(Collision2D other) {
         Santa santa = other.gameObject.GetComponent<Santa>();
         if(santa != null)
-            santa.TakeDamage(damageToDeal);
+        {
+            if(currentHealth > 0)
+                santa.TakeDamage(damageToDeal);
+        }
     }
 }

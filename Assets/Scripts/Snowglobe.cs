@@ -10,7 +10,9 @@ public class Snowglobe : MonoBehaviour, IPooledObject<Snowglobe>
     public float effectDelay = 1f;
 
     private void OnTriggerEnter2D(Collider2D other) {
-        StartCoroutine(KillAllZombies());
+        Santa s = other.gameObject.GetComponent<Santa>();
+        if(s != null)
+            StartCoroutine(KillAllZombies());
     }
     IEnumerator KillAllZombies(){
         float t = 0f;
@@ -18,10 +20,16 @@ public class Snowglobe : MonoBehaviour, IPooledObject<Snowglobe>
         while(t < effectDelay)
         {
             t += Time.deltaTime;
-            transform.localScale = Vector3.Lerp(startScale, transform.localScale * 1.1f, t/effectDelay);
+            transform.localScale = Vector3.Lerp(startScale, transform.localScale * 1.08f, t/effectDelay);
             yield return null;
         }
-        
+        Collider2D[] cols = Physics2D.OverlapCircleAll(Vector2.zero,1000f);
+        foreach(Collider2D c in cols)
+        {
+            Enemy e = c.gameObject.GetComponent<Enemy>();
+            e?.TakeDamage(e.currentHealth);
+        }
+        transform.localScale = startScale;
         ReturnToPool(this);
     }
 }

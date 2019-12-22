@@ -55,7 +55,12 @@ public class Projectile : MonoBehaviour, IPooledObject<Projectile>
         {
             Damagable hit = c.gameObject.GetComponent<Damagable>();
             if(hit != null)
+            {
+                if(hit is Elf)
+                    continue;
+                
                 hit.TakeDamage(damage);
+            }
         }
         // Damagable hit = collision.gameObject.GetComponent<Damagable>();
 
