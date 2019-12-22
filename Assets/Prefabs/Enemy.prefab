@@ -222,6 +222,7 @@ MonoBehaviour:
   maxHealth: 2
   m_speed: 10
   damageToDeal: 2
+  bar: {fileID: 6642146602047756237}
   m_hitSounds:
   - {fileID: 8300000, guid: 037e44767d9e3fc4eb8904e034cce7ca, type: 3}
   - {fileID: 8300000, guid: c0c9993d16fa6e34ea5f0234e63ba849, type: 3}
@@ -538,3 +539,15 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 8849777912316714126}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6642146602047756237 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2809436081309846339, guid: d8d0e9d4adb364e458b0cd06288968a3,
+    type: 3}
+  m_PrefabInstance: {fileID: 8849777912316714126}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eebbb49196994a445a220907918e457a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
