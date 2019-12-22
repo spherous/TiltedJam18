@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance;
 
-    public int score = 0;
+    int m_score = 0;
     public TextMeshProUGUI scoreText;
 
     private void Awake()
@@ -31,18 +31,30 @@ public class GameManager : MonoBehaviour
     
     void Update()
     {
-        scoreText.text = score.ToString();
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             SceneManager.LoadScene(m_startScreen);
         }
     }
 
+    public void AddToScore(int value)
+    {
+        m_score += value;
+        UpdateScore();
+    }
+
     public void OnElfDied(Vector3 position)
     {
-        score--;
+        m_score--;
+        UpdateScore();
         Enemy enemy = m_enemySpawnManager.Spawn(position);
         enemy.ResetLife();
+    }
+
+    void UpdateScore()
+    {
+        scoreText.text = m_score.ToString();
+        SavedScore.SaveScore(m_score);
     }
 
 }
