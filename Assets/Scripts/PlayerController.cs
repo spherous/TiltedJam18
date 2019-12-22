@@ -35,6 +35,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     AudioClip[] m_throwSounds = null;
 
+    [SerializeField]
+    AudioClip[] m_pickupSounds = null;
+
     AudioSource m_audioSource = null;
 
     PoolManager<Projectile> m_pool;
@@ -90,5 +93,8 @@ public class PlayerController : MonoBehaviour
     public void PowerUp()
     {
         powerUpDuration = Mathf.Clamp(powerUpDuration + powerUpTime, 0, maxPowerUpDuration);
+
+        m_audioSource.clip = m_pickupSounds[UnityEngine.Random.Range(0, m_pickupSounds.Length)];
+        m_audioSource.Play();
     }
 }
