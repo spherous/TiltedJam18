@@ -5,6 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D), typeof(SpriteRenderer))]
 public class WalkingAnimator : MonoBehaviour
 {
+    public float stoppingMag = 1f;
+
+
     [SerializeField]
     public Sprite idle = default;
     [SerializeField]
@@ -15,6 +18,7 @@ public class WalkingAnimator : MonoBehaviour
     private Sprite[] rights = default;
 
     private static float frameRate = 6;
+
 
 
     private Sprite[] sprites;
@@ -42,9 +46,11 @@ public class WalkingAnimator : MonoBehaviour
     private void Update()
     {
         elapsed += Time.deltaTime;
-        if (Mathf.Approximately(rb.velocity.x, 0) && Mathf.Approximately(rb.velocity.y, 0))
+        if (rb.velocity.sqrMagnitude < stoppingMag)
         {
             sr.sprite = idle;
+            dir = Dir.Idle;
+            spriteIndex = 0;
         }
         else
         {
@@ -63,32 +69,42 @@ public class WalkingAnimator : MonoBehaviour
     {
         if (Mathf.Abs (rb.velocity.x) > Mathf.Abs (rb.velocity.y))
         {
-            if (rb.velocity.x > 0 && dir != Dir.Right)
+            if (rb.velocity.x > 0)
             {
-                sr.flipX = false;
-                sprites = rights;
-                dir = Dir.Right;
+                if (dir != Dir.Right)
+                {
+                    sr.flipX = false;
+                    sprites = rights;
+                    dir = Dir.Right;
+                    spriteIndex = 0;
+                }
             }
             else if (dir != Dir.Left)
             {
                 sr.flipX = true;
                 sprites = rights;
                 dir = Dir.Left;
+                spriteIndex = 0;
             }
         }
         else
         {
-            if (rb.velocity.y > 0 && dir != Dir.Up)
+            if (rb.velocity.y > 0)
             {
-                sr.flipX = false;
-                sprites = ups;
-                dir = Dir.Up;
+                if (dir != Dir.Up)
+                {
+                    sr.flipX = false;
+                    sprites = ups;
+                    dir = Dir.Up;
+                    spriteIndex = 0;
+                }
             }
             else if (dir != Dir.Down)
             {
                 sr.flipX = false;
                 sprites = downs;
                 dir = Dir.Down;
+                spriteIndex = 0;
             }
         }
     }
