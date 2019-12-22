@@ -4,5 +4,16 @@ using UnityEngine;
 
 public class Santa : Damagable
 {
-    
+    public override int TakeDamage(int damageToTake)
+    {
+        return base.TakeDamage(damageToTake);
+    } 
+    protected override void Death()
+    {
+        base.Death();
+    }
+    public override void Heal(int amountToHeal)
+    {
+        base.Heal(amountToHeal);
+    }
 }

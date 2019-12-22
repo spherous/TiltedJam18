@@ -25,4 +25,9 @@ public class Damagable : MonoBehaviour
     {
         currentHealth = maxHealth;
     }
+
+    public virtual void Heal(int amountToHeal)
+    {
+        currentHealth = Mathf.Min(currentHealth + amountToHeal, maxHealth);
+    }
 }

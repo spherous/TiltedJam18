@@ -22,9 +22,12 @@ public class SpawnManager : MonoBehaviour
     private Enemy m_enemy = null;
     [SerializeField]
     private Preasent m_preasent = null;
+    [SerializeField]
+    private Sweater m_sweater = null;
 
     PoolManager<Enemy> m_pool;
     PoolManager<Preasent> m_preasentPool;
+    PoolManager<Sweater> m_sweaterPool;
 
     float? m_timer = null;
     
@@ -41,6 +44,7 @@ public class SpawnManager : MonoBehaviour
     {
         m_pool = new PoolManager<Enemy>(m_enemy, 10);
         m_preasentPool = new PoolManager<Preasent>(m_preasent, 10);
+        m_sweaterPool = new PoolManager<Sweater>(m_sweater, 10);
     }
 
     #endregion
@@ -76,11 +80,17 @@ public class SpawnManager : MonoBehaviour
             Transform spawn = m_locations[UnityEngine.Random.Range(0, m_locations.Length)];
             enemy.transform.SetPositionAndRotation(spawn.position, spawn.rotation);
         }
-        else
+        else if(rand > 0.7f && rand < 0.85)
         {
             Preasent preasent = m_preasentPool.Get();
             Transform spawn = m_locations[UnityEngine.Random.Range(0, m_locations.Length)];
             preasent.transform.SetPositionAndRotation(spawn.position, spawn.rotation);
+        }
+        else
+        {
+            Sweater sweater = m_sweaterPool.Get();
+            Transform spawn = m_locations[UnityEngine.Random.Range(0, m_locations.Length)];
+            sweater.transform.SetPositionAndRotation(spawn.position, spawn.rotation);
         }
 
     }

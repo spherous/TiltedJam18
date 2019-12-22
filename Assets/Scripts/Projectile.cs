@@ -18,6 +18,8 @@ public class Projectile : MonoBehaviour, IPooledObject<Projectile>
     [SerializeField]
     private TrailRenderer trail;
     [SerializeField]
+    private Collider2D collider;
+    [SerializeField]
     private float decayTime;
     public Action<Projectile> ReturnToPool { get; set; }
 
@@ -45,6 +47,7 @@ public class Projectile : MonoBehaviour, IPooledObject<Projectile>
         rb.angularVelocity = 0;
         sprite.enabled = false;
         collisionEffect.Play();
+        collider.enabled = false;
         StartCoroutine(Decaying());        
     }
 
@@ -53,6 +56,7 @@ public class Projectile : MonoBehaviour, IPooledObject<Projectile>
         yield return new WaitForSeconds(decayTime);
         trail.Clear();
         sprite.enabled = true;
+        collider.enabled = true;
         ReturnToPool(this);
     }
 }
