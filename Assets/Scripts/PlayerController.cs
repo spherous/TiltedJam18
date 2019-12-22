@@ -41,8 +41,11 @@ public class PlayerController : MonoBehaviour
     AudioSource m_audioSource = null;
 
     PoolManager<Projectile> m_pool;
+
+    private Santa santa;
     
     private void Awake() {
+        santa = GetComponent<Santa>();
         rb = GetComponent<Rigidbody2D>();
         m_audioSource = GetComponent<AudioSource>();
         m_pool = new PoolManager<Projectile>(projectile, 10);
@@ -50,6 +53,9 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if(santa.currentHealth <= 0)
+            return;
+            
         Movement();
         if(Input.GetButton("Fire1"))
             Fire();
