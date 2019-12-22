@@ -23,7 +23,7 @@ public class Enemy : Damagable, IPooledObject<Enemy>
 
     [SerializeField]
     private int damageToDeal;
-
+    [SerializeField]
     private HealthBar bar = default;
 
     [SerializeField]
@@ -86,8 +86,7 @@ public class Enemy : Damagable, IPooledObject<Enemy>
         //if (cd) cd.enabled = false;
         enabled = false;
         
-        bar = GetComponentInChildren<HealthBar>();
-        if (bar) bar.gameObject.SetActive(false);
+        bar.gameObject.SetActive(false);
         Invoke("Repool", 10f);
         GameManager.Instance.AddToScore(2);
 
@@ -108,7 +107,8 @@ public class Enemy : Damagable, IPooledObject<Enemy>
         Collider2D cd = GetComponent<Collider2D>();
         if (cd) cd.enabled = true;
         enabled = true;
-        if (bar) bar.gameObject.SetActive(true);
+
+        bar.gameObject.SetActive(true);
         WalkingAnimator wa = GetComponentInChildren<WalkingAnimator>();
         if (wa) wa.enabled = true;
         ReturnToPool(this);
