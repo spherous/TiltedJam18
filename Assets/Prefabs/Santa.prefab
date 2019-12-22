@@ -184,6 +184,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 10
+  m_pickupSounds:
+  - {fileID: 8300000, guid: 19bf7d483b506cc44a825eb224022c5e, type: 3}
 --- !u!114 &2471664861137062050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,7 +211,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 804b85c3820af6041a895932458b2529, type: 3}
   m_pickupSounds:
   - {fileID: 8300000, guid: 5ebca6073f3f5444e8b39d9430682da5, type: 3}
-  - {fileID: 8300000, guid: 19bf7d483b506cc44a825eb224022c5e, type: 3}
 --- !u!50 &3044285105558051619
 Rigidbody2D:
   serializedVersion: 4

@@ -7,6 +7,17 @@ public class Santa : Damagable
 {
     public static Action ProperlyDead;
 
+    [SerializeField]
+    AudioClip[] m_pickupSounds = null;
+
+    AudioSource m_audioSource = null;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        m_audioSource = GetComponent<AudioSource>();
+    }
+
     public override int TakeDamage(int damageToTake)
     {
         return base.TakeDamage(damageToTake);
@@ -21,5 +32,8 @@ public class Santa : Damagable
     public override void Heal(int amountToHeal)
     {
         base.Heal(amountToHeal);
+
+        m_audioSource.clip = m_pickupSounds[UnityEngine.Random.Range(0, m_pickupSounds.Length)];
+        m_audioSource.Play();
     }
 }

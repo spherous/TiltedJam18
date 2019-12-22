@@ -9,7 +9,8 @@ public class Damagable : MonoBehaviour
     public int maxHealth;
     public int currentHealth { get; private set; } = 0;
 
-    private void Awake() {
+    protected virtual void Awake()
+    {
         ResetLife();
     }
 
