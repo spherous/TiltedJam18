@@ -5,7 +5,7 @@ using UnityEngine;
 
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Enemy : MonoBehaviour, IPooledObject<Enemy>
+public class Enemy : Damagable, IPooledObject<Enemy>
 {
     #region Constants
 
@@ -59,10 +59,11 @@ public class Enemy : MonoBehaviour, IPooledObject<Enemy>
     #endregion
 
     #region Management
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    
+    protected override void Death()
     {
-        Debug.Log("Ouch");   
+        // perform death
+        ReturnToPool(this);
     }
 
     #endregion
