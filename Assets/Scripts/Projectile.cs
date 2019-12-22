@@ -44,7 +44,7 @@ public class Projectile : MonoBehaviour, IPooledObject<Projectile>
         this.damage = damage;
         fireAtLocation.z = 0;
         Debug.DrawRay(transform.position, fireAtLocation - transform.position, Color.red, 1f);
-        transform.up = fireAtLocation - transform.position;
+        transform.up = (Vector2)fireAtLocation - (Vector2)transform.position;
         rb.AddForce(transform.up * force, ForceMode2D.Impulse);
     }
 
