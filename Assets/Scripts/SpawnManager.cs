@@ -72,6 +72,7 @@ public class SpawnManager : MonoBehaviour
         if(rand <= 0.7f)
         {
             Enemy enemy = m_pool.Get();
+            enemy.ResetLife();
             Transform spawn = m_locations[UnityEngine.Random.Range(0, m_locations.Length)];
             enemy.transform.SetPositionAndRotation(spawn.position, spawn.rotation);
         }

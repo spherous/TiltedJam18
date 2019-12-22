@@ -20,4 +20,9 @@ public class Damagable : MonoBehaviour
     {
         Debug.Log(name + " has died.");
     }
+
+    public virtual void ResetLife()
+    {
+        currentHealth = maxHealth;
+    }
 }

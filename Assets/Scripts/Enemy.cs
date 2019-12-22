@@ -65,7 +65,10 @@ public class Enemy : Damagable, IPooledObject<Enemy>
         // perform death
         ReturnToPool(this);
     }
-
+    public override void ResetLife()
+    {
+        base.ResetLife();
+    }
     #endregion
 
 }
