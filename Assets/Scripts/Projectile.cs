@@ -23,10 +23,17 @@ public class Projectile : MonoBehaviour, IPooledObject<Projectile>
     private float decayTime;
     public Action<Projectile> ReturnToPool { get; set; }
 
+    [SerializeField]
+    AudioClip[] m_hitSounds = null;
+
+    AudioSource m_audioSource = null;
+
     private void Awake()
     {
         if(rb == null)
             rb = GetComponent<Rigidbody2D>();
+
+        m_audioSource = GetComponent<AudioSource>();
     }
 
     public void Fire(Vector3 fireAtLocation, int damage)
@@ -48,7 +55,10 @@ public class Projectile : MonoBehaviour, IPooledObject<Projectile>
         sprite.enabled = false;
         collisionEffect.Play();
         collider.enabled = false;
-        StartCoroutine(Decaying());        
+        StartCoroutine(Decaying());
+
+        m_audioSource.clip = m_hitSounds[UnityEngine.Random.Range(0, m_hitSounds.Length)];
+        m_audioSource.Play();
     }
 
     IEnumerator Decaying()

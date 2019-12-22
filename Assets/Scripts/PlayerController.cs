@@ -32,12 +32,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float m_projectileShakeDuration = .5f;
 
+    [SerializeField]
+    AudioClip[] m_throwSounds = null;
+
+    AudioSource m_audioSource = null;
 
     PoolManager<Projectile> m_pool;
     
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();
-
+        m_audioSource = GetComponent<AudioSource>();
         m_pool = new PoolManager<Projectile>(projectile, 10);
     }
 
@@ -69,6 +73,9 @@ public class PlayerController : MonoBehaviour
             projectile.Fire(gm.activeCamera.ScreenToWorldPoint(Input.mousePosition), 1);
 
             ScreenShake.Shake(m_projectileShakeMagnitude, m_projectileShakeDuration);
+
+            m_audioSource.clip = m_throwSounds[UnityEngine.Random.Range(0, m_throwSounds.Length)];
+            m_audioSource.Play();
         }
     }
 
