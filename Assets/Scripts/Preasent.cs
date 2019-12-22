@@ -13,5 +13,9 @@ public class Preasent : MonoBehaviour, IPooledObject<Preasent>
             pc.PowerUp();
             ReturnToPool(this);
         }
+        Damagable damagable = other.gameObject.GetComponent<Damagable>();
+        if(damagable != null)
+            if(damagable is Elf)
+                ReturnToPool(this);
     }
 }
