@@ -22,10 +22,13 @@ public class Elf : Damagable, IPooledObject<Elf>
 
     Rigidbody2D m_rigidbody2D = null;
 
+    float m_originalStartingY = 0f;
+
     #endregion
 
     #region Callbacks
 
+    public static Action Survived { get; set; }
 
     public static Action<Vector3> Died { get; set; }
 
@@ -45,6 +48,11 @@ public class Elf : Damagable, IPooledObject<Elf>
         m_rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
+    private void OnEnable()
+    {
+        m_originalStartingY = Mathf.Abs(this.transform.position.y);
+    }
+
     #endregion
 
     #region Update
@@ -52,6 +60,15 @@ public class Elf : Damagable, IPooledObject<Elf>
     void FixedUpdate()
     {
         m_rigidbody2D.AddForce(Vector3.down * (m_speed * Time.fixedDeltaTime), ForceMode2D.Force);
+
+
+        if((Mathf.Abs(this.transform.position.y) - m_originalStartingY) > m_clearanceRange)
+        {
+            Debug.Log("Survived");
+
+            Survived?.Invoke();
+            ReturnToPool(this);
+        }
     }
 
     #endregion
