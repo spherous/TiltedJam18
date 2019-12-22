@@ -250,7 +250,7 @@ GameObject:
   - component: {fileID: 309053511}
   - component: {fileID: 309053510}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: Score Number
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -764,7 +764,7 @@ GameObject:
   - component: {fileID: 710339463}
   - component: {fileID: 710339462}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1017,7 +1017,7 @@ GameObject:
   - component: {fileID: 1517646120}
   - component: {fileID: 1517646119}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Score Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

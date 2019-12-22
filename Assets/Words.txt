@@ -7,4 +7,5 @@ Sweater x
 Fluffy x
 Preasent x
 City x
-Greedy
+Greedy x
+Shiny

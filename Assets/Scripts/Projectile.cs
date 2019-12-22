@@ -14,7 +14,7 @@ public class Projectile : MonoBehaviour, IPooledObject<Projectile>
     [SerializeField]
     private ParticleSystem collisionEffect;
     [SerializeField]
-    private SpriteRenderer sprite;
+    private SpriteRenderer[] sprite;
     [SerializeField]
     private TrailRenderer trail;
     [SerializeField]
@@ -27,6 +27,9 @@ public class Projectile : MonoBehaviour, IPooledObject<Projectile>
     AudioClip[] m_hitSounds = null;
 
     AudioSource m_audioSource = null;
+
+    [SerializeField]
+    private float radius;
 
     private void Awake()
     {
@@ -47,12 +50,19 @@ public class Projectile : MonoBehaviour, IPooledObject<Projectile>
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Damagable hit = collision.gameObject.GetComponent<Damagable>();
-        if(hit != null)
-            hit.TakeDamage(damage);
+        Collider2D[] cols = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y), radius);
+        foreach(Collider2D c in cols)
+        {
+            Damagable hit = c.gameObject.GetComponent<Damagable>();
+            if(hit != null)
+                hit.TakeDamage(damage);
+        }
+        // Damagable hit = collision.gameObject.GetComponent<Damagable>();
+
         rb.velocity = Vector3.zero;
         rb.angularVelocity = 0;
-        sprite.enabled = false;
+        foreach(SpriteRenderer sr in sprite)
+            sr.enabled = false;
         collisionEffect.Play();
         collider.enabled = false;
         StartCoroutine(Decaying());
@@ -65,7 +75,8 @@ public class Projectile : MonoBehaviour, IPooledObject<Projectile>
     {
         yield return new WaitForSeconds(decayTime);
         trail.Clear();
-        sprite.enabled = true;
+        foreach(SpriteRenderer sr in sprite)
+            sr.enabled = true;
         collider.enabled = true;
         ReturnToPool(this);
     }
