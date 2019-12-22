@@ -46,9 +46,11 @@ public class Elf : Damagable, IPooledObject<Elf>
 
     #region Construction
 
-    void Awake()
+    protected override void Awake()
     {
         m_rigidbody2D = GetComponent<Rigidbody2D>();
+
+        base.Awake();
     }
 
     private void OnEnable()

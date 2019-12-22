@@ -40,12 +40,14 @@ public class Enemy : Damagable, IPooledObject<Enemy>
 
     #region Construction
 
-    void Awake()
+    protected override void Awake()
     {
         if (ms_santa == null)
             ms_santa = FindObjectOfType<Santa>();
 
         m_rigidbody2D = GetComponent<Rigidbody2D>();
+
+        base.Awake();
     }
 
     #endregion
