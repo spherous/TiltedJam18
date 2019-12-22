@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9104133689806121595}
   - component: {fileID: 234123968127778951}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SnowglobeBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,8 +90,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6651893075992305355}
+  - component: {fileID: 3222253763754958364}
   - component: {fileID: 513489578969370678}
-  m_Layer: 0
+  - component: {fileID: 8945608236861153523}
+  m_Layer: 10
   m_Name: Snowglobe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,6 +118,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3222253763754958364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4037221671270092877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0906c977bdd5c6940a1b84c493e92e87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectDelay: 1
 --- !u!210 &513489578969370678
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -127,6 +142,32 @@ SortingGroup:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!61 &8945608236861153523
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4037221671270092877}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.065692574, y: 0.056734204}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.226938, y: 1.256798}
+  m_EdgeRadius: 0
 --- !u!1 &5387044699561019420
 GameObject:
   m_ObjectHideFlags: 0
@@ -138,7 +179,7 @@ GameObject:
   - component: {fileID: 728646469712231595}
   - component: {fileID: 6130431768295585056}
   - component: {fileID: 1302730955108168555}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: snow sheet_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -240,7 +281,7 @@ GameObject:
   - component: {fileID: 2836453908884830863}
   - component: {fileID: 4498639900822932877}
   - component: {fileID: 3348831377211559704}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SnowglobeGlass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -375,7 +416,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1923562678156909963}
   - component: {fileID: 3597615928150372848}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: CityInGlobe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
