@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -18,6 +19,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public int score = 0;
+    public TextMeshProUGUI scoreText;
 
     private void Awake()
     {
@@ -29,6 +31,7 @@ public class GameManager : MonoBehaviour
     
     void Update()
     {
+        scoreText.text = score.ToString();
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             SceneManager.LoadScene(m_startScreen);

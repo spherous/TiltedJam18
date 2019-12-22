@@ -17,6 +17,8 @@ public class ScreenShake : MonoBehaviour
     // state
     Vector3 m_initialPosition;
     float? m_timer = null;
+    float m_occuranceTimer = 0;
+    public float m_occuranceTime;
     float m_shakeMagnitude = 1f;
     
     #endregion
@@ -42,7 +44,12 @@ public class ScreenShake : MonoBehaviour
         if (m_timer.HasValue)
         {
             m_timer -= Time.deltaTime;
-            transform.localPosition = m_initialPosition + Random.insideUnitSphere * m_shakeMagnitude;
+            m_occuranceTimer += Time.deltaTime;
+            if(m_occuranceTimer >= m_occuranceTime)
+            {
+                m_occuranceTimer = 0;
+                transform.localPosition = Vector3.Lerp(transform.localPosition, m_initialPosition + Random.insideUnitSphere * m_shakeMagnitude, Time.fixedDeltaTime);
+            }
 
             if (m_timer < 0f)
             {
