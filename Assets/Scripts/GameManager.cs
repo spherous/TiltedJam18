@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     string m_startScreen = null;
 
+    [SerializeField]
+    string m_outroScreen = null;
+
     EnemySpawnManager m_enemySpawnManager = null;
 
     public Camera activeCamera;
@@ -26,6 +29,11 @@ public class GameManager : MonoBehaviour
 
         m_enemySpawnManager = FindObjectOfType<EnemySpawnManager>();
         Elf.Died += OnElfDied;
+
+        Santa.ProperlyDead += OnSantaProperlyDead;
+
+        m_score = 0;
+        UpdateScore();
     }
     
     void Update()
@@ -42,9 +50,25 @@ public class GameManager : MonoBehaviour
         UpdateScore();
     }
 
+    void OnSantaProperlyDead()
+    {
+        EndGame();
+    }
+
+    public void EndGame()
+    {
+        StartCoroutine(DelayEndGame());
+    }
+
+    IEnumerator DelayEndGame()
+    {
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene(m_outroScreen);
+    }
+
     public void OnElfDied(Vector3 position)
     {
-        score--;
+        m_score--;
         StartCoroutine(ConvertElf(position));
     }
 

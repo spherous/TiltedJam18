@@ -204,6 +204,9 @@ MonoBehaviour:
   powerUpTime: 2
   m_projectileShakeMagnitude: 0.5
   m_projectileShakeDuration: 0.5
+  m_throwSounds:
+  - {fileID: 8300000, guid: bb6effb608d95884792d5ac548cd1e94, type: 3}
+  - {fileID: 8300000, guid: 804b85c3820af6041a895932458b2529, type: 3}
 --- !u!50 &3044285105558051619
 Rigidbody2D:
   serializedVersion: 4

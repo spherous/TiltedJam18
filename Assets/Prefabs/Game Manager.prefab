@@ -44,4 +44,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_startScreen: Intro
+  m_outroScreen: Outro
   activeCamera: {fileID: 0}
+  scoreText: {fileID: 0}
